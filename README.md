@@ -1,5 +1,7 @@
 ## Hi there 👋
 
+Dr Connor Robertson
+
 <!--
 **drconnorrobertson/drconnorrobertson** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 
