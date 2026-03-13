@@ -12,6 +12,7 @@ from pathlib import Path
 
 import yaml
 
+from src.airdna_client import AirDNAClient
 from src.financial_analyzer import analyze_deal
 from src.improvement_estimator import ImprovementEstimator
 from src.models import PermitStatus
@@ -45,7 +46,14 @@ def run_scan(config: dict, dry_run: bool = False) -> None:
 
     zillow = ZillowClient(api_key)
     estimator = RevenueEstimator(config["api_keys"].get("mashvisor", ""))
-    improvement_estimator = ImprovementEstimator(config)
+
+    # Set up AirDNA client for comp-driven improvement analysis
+    airdna_key = config["api_keys"].get("airdna_rapidapi", "")
+    airdna_client = AirDNAClient(airdna_key) if airdna_key else None
+    if airdna_client:
+        logger.info("AirDNA integration enabled — fetching comp amenities from live data")
+    improvement_estimator = ImprovementEstimator(config, airdna_client=airdna_client)
+
     permit_checker = PermitChecker()
     notifier = Notifier()
 

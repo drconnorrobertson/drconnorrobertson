@@ -171,8 +171,9 @@ COSMETIC_REHAB_BY_AGE: list[tuple[int, float]] = [
 
 
 class ImprovementEstimator:
-    def __init__(self, config: dict[str, Any] | None = None):
+    def __init__(self, config: dict[str, Any] | None = None, airdna_client: Any = None):
         self.config = config or {}
+        self.airdna_client = airdna_client
         improvement_config = self.config.get("improvements", {})
         self.furnishing_per_bedroom = improvement_config.get(
             "furnishing_per_bedroom", FURNISHING_PER_BEDROOM
@@ -189,6 +190,8 @@ class ImprovementEstimator:
         self.existing_amenities: list[str] = improvement_config.get(
             "existing_amenities", []
         )
+        # Cache AirDNA comp amenities per market to avoid repeated API calls
+        self._comp_amenity_cache: dict[str, set[str]] = {}
 
     def estimate(
         self,
@@ -197,12 +200,26 @@ class ImprovementEstimator:
     ) -> ImprovementEstimate:
         """Estimate improvement costs based on market comps and property details.
 
+        If an AirDNA client is configured, queries AirDNA for the top-performing
+        comps in the market and extracts what amenities they have. The property
+        needs to match those amenities to compete. Falls back to hardcoded
+        market data if AirDNA is unavailable.
+
         Args:
             prop: The subject property.
             existing_amenities: List of amenity names the property already has.
                 If None, assumes the property has nothing (worst case).
         """
         existing = set(a.lower() for a in (existing_amenities or self.existing_amenities))
+
+        # Try to enrich existing amenities from AirDNA comp data
+        comp_amenities = self._get_comp_amenities(prop)
+        if comp_amenities:
+            logger.info(
+                "AirDNA comps for %s show top amenities: %s",
+                prop.market,
+                ", ".join(sorted(comp_amenities)),
+            )
 
         furnishing = self._estimate_furnishing(prop)
         amenity_additions = self._estimate_amenities(prop, existing)
@@ -213,6 +230,35 @@ class ImprovementEstimator:
             amenity_additions=amenity_additions,
             cosmetic_rehab=cosmetic,
         )
+
+    def _get_comp_amenities(self, prop: Property) -> set[str]:
+        """Fetch amenities from top-performing comps via AirDNA.
+
+        Results are cached per market so we only call the API once per market.
+        Returns normalized amenity names that match our internal catalog.
+        """
+        if not self.airdna_client:
+            return set()
+
+        cache_key = f"{prop.market}:{prop.bedrooms}"
+        if cache_key in self._comp_amenity_cache:
+            return self._comp_amenity_cache[cache_key]
+
+        try:
+            from src.airdna_client import normalize_airdna_amenities
+
+            raw_amenities = self.airdna_client.extract_comp_amenities(
+                location=prop.market,
+                bedrooms=prop.bedrooms,
+                top_n=10,
+            )
+            normalized = normalize_airdna_amenities(raw_amenities)
+            self._comp_amenity_cache[cache_key] = normalized
+            return normalized
+        except Exception as e:
+            logger.warning("Failed to fetch AirDNA comp amenities: %s", e)
+            self._comp_amenity_cache[cache_key] = set()
+            return set()
 
     def _estimate_furnishing(self, prop: Property) -> float:
         """Estimate furnishing cost based on bedrooms and sqft."""

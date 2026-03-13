@@ -1,6 +1,7 @@
 api_keys:
-  zillow_rapidapi: "YOUR_RAPIDAPI_KEY"
+  zillow_rapidapi: "ca56118692msh934ff5ce7b4982fp181ad8jsn3901adb598e3"
   mashvisor: ""  # Optional: leave empty to use heuristic fallback
+  airdna_rapidapi: "ca56118692msh934ff5ce7b4982fp181ad8jsn3901adb598e3"
 
 markets:
   - name: "Gatlinburg, TN"
