@@ -19,19 +19,25 @@ This repo contains the **STR Deal Finder** — a Python application that continu
 │   ├── zillow_client.py          # Zillow RapidAPI integration
 │   ├── revenue_estimator.py      # STR revenue estimation (Mashvisor + heuristics)
 │   ├── financial_analyzer.py     # Full underwriting engine
+│   ├── improvement_estimator.py  # Comp-driven improvement cost calculator
+│   ├── airdna_client.py          # AirDNA RapidAPI integration
 │   ├── permit_checker.py         # STR permit feasibility lookup
 │   └── notifier.py               # Terminal output + CSV export
+├── app.py                        # Streamlit web dashboard
 ├── data/
 │   └── str_regulations.json      # STR permit rules by city/county
 ├── tests/
 │   ├── test_financial_analyzer.py
+│   ├── test_improvement_estimator.py
+│   ├── test_airdna_client.py
 │   └── test_revenue_estimator.py
 └── output/                       # Generated CSVs (gitignored)
 ```
 
 ## Commands
 
-- **Run the app**: `python -m src.main --config config/settings.yaml`
+- **Run the dashboard**: `streamlit run app.py`
+- **Run the scanner**: `python -m src.main --config config/settings.yaml`
 - **Dry run (once, no loop)**: `python -m src.main --dry-run`
 - **Run tests**: `python -m pytest tests/ -v`
 - **Install deps**: `pip install -r requirements.txt`
