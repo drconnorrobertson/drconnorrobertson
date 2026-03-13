@@ -1,0 +1,67 @@
+api_keys:
+  zillow_rapidapi: "YOUR_RAPIDAPI_KEY"
+  mashvisor: ""  # Optional: leave empty to use heuristic fallback
+
+markets:
+  - name: "Gatlinburg, TN"
+    location: "Gatlinburg, TN"
+  - name: "Pigeon Forge, TN"
+    location: "Pigeon Forge, TN"
+  - name: "Destin, FL"
+    location: "Destin, FL"
+  - name: "Panama City Beach, FL"
+    location: "Panama City Beach, FL"
+  - name: "Kissimmee, FL"
+    location: "Kissimmee, FL"
+  - name: "Gulf Shores, AL"
+    location: "Gulf Shores, AL"
+  - name: "Scottsdale, AZ"
+    location: "Scottsdale, AZ"
+  - name: "Joshua Tree, CA"
+    location: "Joshua Tree, CA"
+  - name: "Big Bear Lake, CA"
+    location: "Big Bear Lake, CA"
+  - name: "Poconos, PA"
+    location: "Mount Pocono, PA"
+  - name: "Outer Banks, NC"
+    location: "Kill Devil Hills, NC"
+  - name: "Branson, MO"
+    location: "Branson, MO"
+  - name: "Myrtle Beach, SC"
+    location: "Myrtle Beach, SC"
+
+filters:
+  max_price: 900000
+  min_bedrooms: 1
+  property_types:
+    - "SingleFamily"
+    - "Townhouse"
+    - "Condo"
+
+financial_assumptions:
+  down_payment_pct: 0.10
+  loan_term_years: 30
+  interest_rate: 0.07
+  closing_cost_pct: 0.03
+  improvement_budget: 25000
+  furnishing_budget: 15000
+
+expenses:
+  insurance_annual: 4000
+  property_management_pct: 0.22
+  utilities_monthly: 400
+  maintenance_pct: 0.015
+  cleaning_per_turnover: 150
+  avg_stay_nights: 3.5
+  platform_fee_pct: 0.03
+  supplies_monthly: 100
+  str_permit_annual: 500
+  accounting_annual: 1500
+  furniture_reserve_pct: 0.03
+  landscaping_monthly: 150
+
+thresholds:
+  min_cash_on_cash: 0.10
+  min_occupancy: 0.50
+
+scan_interval_hours: 4
