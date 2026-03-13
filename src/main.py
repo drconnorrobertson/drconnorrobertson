@@ -13,6 +13,7 @@ from pathlib import Path
 import yaml
 
 from src.financial_analyzer import analyze_deal
+from src.improvement_estimator import ImprovementEstimator
 from src.models import PermitStatus
 from src.notifier import Notifier
 from src.permit_checker import PermitChecker
@@ -44,6 +45,7 @@ def run_scan(config: dict, dry_run: bool = False) -> None:
 
     zillow = ZillowClient(api_key)
     estimator = RevenueEstimator(config["api_keys"].get("mashvisor", ""))
+    improvement_estimator = ImprovementEstimator(config)
     permit_checker = PermitChecker()
     notifier = Notifier()
 
@@ -91,8 +93,11 @@ def run_scan(config: dict, dry_run: bool = False) -> None:
             # Check permit
             permit = permit_checker.check(prop)
 
+            # Estimate improvements based on market comps
+            improvements = improvement_estimator.estimate(prop)
+
             # Analyze financials
-            deal = analyze_deal(prop, revenue, permit, config)
+            deal = analyze_deal(prop, revenue, permit, config, improvements)
 
             # Mark as seen regardless of outcome
             zillow.mark_seen(prop.zpid)

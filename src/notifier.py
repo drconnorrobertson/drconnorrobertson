@@ -62,6 +62,15 @@ class Notifier:
         table.add_row("  Landscaping", f"${exp.landscaping:,.0f}")
         table.add_row("  [bold]Total Expenses[/]", f"[bold]${exp.total:,.0f}[/]")
         table.add_row("", "")
+        table.add_row("IMPROVEMENTS", "")
+        imp = deal.improvements
+        table.add_row("  Furnishing", f"${imp.furnishing_cost:,.0f}")
+        for amenity_name, amenity_cost in imp.amenity_details:
+            table.add_row(f"  Add {amenity_name}", f"${amenity_cost:,.0f}")
+        if imp.cosmetic_rehab > 0:
+            table.add_row("  Cosmetic Rehab", f"${imp.cosmetic_rehab:,.0f}")
+        table.add_row("  [bold]Total Improvements[/]", f"[bold]${imp.total:,.0f}[/]")
+        table.add_row("", "")
         table.add_row("Cash Invested", f"${deal.cash_invested:,.0f}")
         table.add_row("Annual Cash Flow", f"${deal.annual_cash_flow:,.0f}")
         table.add_row("Cash-on-Cash Return", f"{deal.cash_on_cash_return:.1%}")
@@ -96,6 +105,7 @@ class Notifier:
             "utilities", "maintenance", "cleaning", "platform_fees",
             "supplies", "permit_fee", "accounting", "furniture_reserve",
             "landscaping", "total_expenses",
+            "furnishing_cost", "amenity_cost", "cosmetic_rehab", "total_improvements",
             "cash_invested", "annual_cash_flow", "cash_on_cash",
             "permit_status", "listing_url",
         ]
@@ -132,6 +142,10 @@ class Notifier:
                 "furniture_reserve": deal.expenses.furniture_reserve,
                 "landscaping": deal.expenses.landscaping,
                 "total_expenses": deal.expenses.total,
+                "furnishing_cost": deal.improvements.furnishing_cost,
+                "amenity_cost": deal.improvements.amenity_cost,
+                "cosmetic_rehab": deal.improvements.cosmetic_rehab,
+                "total_improvements": deal.improvements.total,
                 "cash_invested": deal.cash_invested,
                 "annual_cash_flow": deal.annual_cash_flow,
                 "cash_on_cash": f"{deal.cash_on_cash_return:.2%}",

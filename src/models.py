@@ -105,11 +105,24 @@ class PermitInfo:
 
 
 @dataclass
+class ImprovementBreakdown:
+    furnishing_cost: float = 0.0
+    amenity_cost: float = 0.0
+    cosmetic_rehab: float = 0.0
+    amenity_details: list[tuple[str, float]] = field(default_factory=list)
+
+    @property
+    def total(self) -> float:
+        return self.furnishing_cost + self.amenity_cost + self.cosmetic_rehab
+
+
+@dataclass
 class Deal:
     property: Property
     revenue: RevenueEstimate
     expenses: ExpenseBreakdown
     permit: PermitInfo
+    improvements: ImprovementBreakdown = field(default_factory=ImprovementBreakdown)
     cash_invested: float = 0.0
     annual_cash_flow: float = 0.0
     cash_on_cash_return: float = 0.0

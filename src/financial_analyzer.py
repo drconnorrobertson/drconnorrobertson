@@ -6,9 +6,11 @@ Calculates all expenses, mortgage payments, and cash-on-cash returns.
 import math
 from typing import Any
 
+from src.improvement_estimator import ImprovementEstimate, ImprovementEstimator
 from src.models import (
     Deal,
     ExpenseBreakdown,
+    ImprovementBreakdown,
     PermitInfo,
     Property,
     RevenueEstimate,
@@ -30,14 +32,40 @@ def calculate_monthly_mortgage(
     return payment
 
 
-def calculate_cash_invested(price: float, config: dict[str, Any]) -> float:
-    """Calculate total cash required to close and prepare the property."""
+def calculate_cash_invested(
+    price: float,
+    config: dict[str, Any],
+    improvement_estimate: ImprovementEstimate | None = None,
+) -> tuple[float, ImprovementBreakdown]:
+    """Calculate total cash required to close and prepare the property.
+
+    Uses dynamic improvement estimate if provided, otherwise falls back
+    to flat config values for backwards compatibility.
+    """
     fa = config["financial_assumptions"]
     down_payment = price * fa["down_payment_pct"]
     closing_costs = price * fa["closing_cost_pct"]
-    improvements = fa["improvement_budget"]
-    furnishing = fa["furnishing_budget"]
-    return down_payment + closing_costs + improvements + furnishing
+
+    if improvement_estimate:
+        improvements = ImprovementBreakdown(
+            furnishing_cost=improvement_estimate.furnishing_cost,
+            amenity_cost=improvement_estimate.total_amenity_cost,
+            cosmetic_rehab=improvement_estimate.cosmetic_rehab,
+            amenity_details=list(improvement_estimate.amenity_additions),
+        )
+        total = down_payment + closing_costs + improvements.total
+    else:
+        # Flat fallback from config
+        imp = fa.get("improvement_budget", 25000)
+        furn = fa.get("furnishing_budget", 15000)
+        improvements = ImprovementBreakdown(
+            furnishing_cost=furn,
+            amenity_cost=0,
+            cosmetic_rehab=imp,
+        )
+        total = down_payment + closing_costs + imp + furn
+
+    return total, improvements
 
 
 def calculate_expenses(
@@ -88,10 +116,13 @@ def analyze_deal(
     revenue: RevenueEstimate,
     permit: PermitInfo,
     config: dict[str, Any],
+    improvement_estimate: ImprovementEstimate | None = None,
 ) -> Deal:
     """Perform full financial analysis and return a Deal."""
     expenses = calculate_expenses(prop, revenue, config)
-    cash_invested = calculate_cash_invested(prop.price, config)
+    cash_invested, improvements = calculate_cash_invested(
+        prop.price, config, improvement_estimate
+    )
     annual_cash_flow = revenue.annual_revenue - expenses.total
     cash_on_cash = annual_cash_flow / cash_invested if cash_invested > 0 else 0.0
 
@@ -100,6 +131,7 @@ def analyze_deal(
         revenue=revenue,
         expenses=expenses,
         permit=permit,
+        improvements=improvements,
         cash_invested=cash_invested,
         annual_cash_flow=annual_cash_flow,
         cash_on_cash_return=cash_on_cash,

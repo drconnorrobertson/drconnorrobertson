@@ -43,8 +43,21 @@ financial_assumptions:
   loan_term_years: 30
   interest_rate: 0.07
   closing_cost_pct: 0.03
+  # Flat fallback values (used only if improvement estimator is bypassed)
   improvement_budget: 25000
   furnishing_budget: 15000
+
+# Comp-driven improvement estimation settings
+# Costs are calculated dynamically based on market comps, property age, and size
+improvements:
+  furnishing_per_bedroom: 4000    # Per bedroom (furniture, linens, decor)
+  furnishing_base: 8000           # Common areas (living, kitchen, dining, patio)
+  only_high_impact_amenities: false  # true = only add amenities with "high" revenue impact
+  max_amenity_budget: 60000       # Cap on total amenity additions
+  # If the listing has known amenities, list them here to skip those costs:
+  # existing_amenities:
+  #   - "hot tub"
+  #   - "private pool"
 
 expenses:
   insurance_annual: 4000

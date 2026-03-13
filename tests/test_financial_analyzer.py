@@ -91,15 +91,30 @@ class TestMonthlyMortgage:
 
 
 class TestCashInvested:
-    def test_basic(self):
+    def test_basic_flat_fallback(self):
         # $500k: 10% down ($50k) + 3% closing ($15k) + $25k improve + $15k furnish = $105k
-        result = calculate_cash_invested(500000, SAMPLE_CONFIG)
-        assert result == 105000
+        total, improvements = calculate_cash_invested(500000, SAMPLE_CONFIG)
+        assert total == 105000
+        assert improvements.total == 40000  # $25k + $15k
 
-    def test_max_price(self):
+    def test_max_price_flat_fallback(self):
         # $900k: $90k + $27k + $25k + $15k = $157k
-        result = calculate_cash_invested(900000, SAMPLE_CONFIG)
-        assert result == 157000
+        total, improvements = calculate_cash_invested(900000, SAMPLE_CONFIG)
+        assert total == 157000
+
+    def test_with_dynamic_estimate(self):
+        from src.improvement_estimator import ImprovementEstimate
+        estimate = ImprovementEstimate(
+            furnishing_cost=20000,
+            amenity_additions=[("hot tub", 8000), ("game room", 5000)],
+            cosmetic_rehab=7000,
+        )
+        # $500k: $50k down + $15k closing + $20k furn + $13k amenities + $7k rehab = $105k
+        total, improvements = calculate_cash_invested(500000, SAMPLE_CONFIG, estimate)
+        assert total == 50000 + 15000 + 20000 + 13000 + 7000
+        assert improvements.furnishing_cost == 20000
+        assert improvements.amenity_cost == 13000
+        assert improvements.cosmetic_rehab == 7000
 
 
 class TestExpenses:
@@ -165,7 +180,9 @@ class TestAnalyzeDeal:
         permit = PermitInfo(status=PermitStatus.ALLOWED)
         deal = analyze_deal(prop, rev, permit, SAMPLE_CONFIG)
 
+        # Uses flat fallback: $50k down + $15k closing + $25k improve + $15k furnish = $105k
         assert deal.cash_invested == 105000
+        assert deal.improvements.total == 40000
         assert deal.annual_cash_flow == rev.annual_revenue - deal.expenses.total
         assert deal.cash_on_cash_return == deal.annual_cash_flow / deal.cash_invested
 
