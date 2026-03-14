@@ -5,3 +5,4 @@ output/*.csv
 output/*.json
 !output/.gitkeep
 .env
+.streamlit/secrets.toml
