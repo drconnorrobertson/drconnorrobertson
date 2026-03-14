@@ -145,29 +145,36 @@ if __name__ == "__main__":
     console.print()
     console.print(Panel("[bold cyan]STR DEAL FINDER — Sample Analysis[/bold cyan]", border_style="cyan"))
 
-    # === Property 1: Gatlinburg cabin, no amenities ===
+    # === Property 1: Gatlinburg cabin — good entry price, has hot tub ===
     console.print()
-    console.print("[bold]SCENARIO 1: Gatlinburg 3BR cabin — $450K, no amenities[/bold]")
-    console.print("[dim]Worst case: needs everything to compete with comps[/dim]")
-    analyze_sample_property(config, "Gatlinburg, TN", 450000, 3, 2.0, 1800, 2010, [])
+    console.print("[bold]SCENARIO 1: Gatlinburg 3BR cabin — $325K, has hot tub[/bold]")
+    console.print("[dim]Realistic entry price for a cabin that already has the #1 amenity[/dim]")
+    analyze_sample_property(config, "Gatlinburg, TN", 325000, 3, 2.0, 1600, 2015, ["hot tub"])
 
-    # === Property 2: Same cabin but already has hot tub + game room ===
+    # === Property 2: Scottsdale — strong revenue market ===
     console.print()
-    console.print("[bold]SCENARIO 2: Same Gatlinburg cabin — already has hot tub + game room[/bold]")
-    console.print("[dim]Has the two highest-impact amenities already[/dim]")
-    analyze_sample_property(config, "Gatlinburg, TN", 450000, 3, 2.0, 1800, 2010, ["hot tub", "game room"])
+    console.print("[bold]SCENARIO 2: Scottsdale 4BR — $500K, has pool + hot tub[/bold]")
+    console.print("[dim]Premium market, property already has the big-ticket amenities[/dim]")
+    analyze_sample_property(config, "Scottsdale, AZ", 500000, 4, 3.0, 2200, 2012, ["private pool", "hot tub"])
 
-    # === Property 3: Kissimmee near Disney, bigger home ===
+    # === Property 3: Kissimmee near Disney, turnkey ===
     console.print()
-    console.print("[bold]SCENARIO 3: Kissimmee 5BR — $600K, near Disney, needs pool + game room[/bold]")
-    analyze_sample_property(config, "Kissimmee, FL", 600000, 5, 3.0, 2800, 2005, [])
+    console.print("[bold]SCENARIO 3: Kissimmee 5BR — $425K, has pool + game room + themed rooms[/bold]")
+    console.print("[dim]Turnkey Disney rental — already has what comps have[/dim]")
+    analyze_sample_property(config, "Kissimmee, FL", 425000, 5, 3.0, 2800, 2018, ["private pool", "game room", "themed rooms"])
 
-    # === Property 4: Joshua Tree unique ===
+    # === Property 4: Branson budget deal ===
     console.print()
-    console.print("[bold]SCENARIO 4: Joshua Tree 2BR — $350K, already has hot tub + fire pit[/bold]")
-    analyze_sample_property(config, "Joshua Tree, CA", 350000, 2, 1.0, 1100, 2018, ["hot tub", "fire pit"])
+    console.print("[bold]SCENARIO 4: Branson 3BR — $225K, needs hot tub + game room[/bold]")
+    console.print("[dim]Low entry price, needs work but affordable[/dim]")
+    analyze_sample_property(config, "Branson, MO", 225000, 3, 2.0, 1400, 2008, [])
 
-    # === Market Comparison ===
+    # === Property 5: Destin beach house ===
+    console.print()
+    console.print("[bold]SCENARIO 5: Destin 3BR — $375K, already has outdoor kitchen[/bold]")
+    analyze_sample_property(config, "Destin, FL", 375000, 3, 2.0, 1700, 2016, ["outdoor kitchen/grill"])
+
+    # === Market Comparison at lower price ===
     console.print()
     console.print("[bold]ALL MARKETS COMPARISON[/bold]")
-    market_comparison(config, bedrooms=3, ref_price=450000)
+    market_comparison(config, bedrooms=3, ref_price=350000)

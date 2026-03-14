@@ -33,9 +33,10 @@ SAMPLE_CONFIG = {
     },
     "expenses": {
         "insurance_annual": 4000,
-        "property_management_pct": 0.22,
-        "utilities_monthly": 400,
-        "maintenance_pct": 0.015,
+        "property_management_pct": 0.18,
+        "utilities_base_monthly": 150,
+        "utilities_per_bedroom": 50,
+        "maintenance_pct": 0.01,
         "cleaning_per_turnover": 150,
         "avg_stay_nights": 3.5,
         "platform_fee_pct": 0.03,
@@ -43,7 +44,7 @@ SAMPLE_CONFIG = {
         "str_permit_annual": 500,
         "accounting_annual": 1500,
         "furniture_reserve_pct": 0.03,
-        "landscaping_monthly": 150,
+        "landscaping_monthly": 100,
     },
 }
 
@@ -127,16 +128,16 @@ class TestExpenses:
         assert expenses.property_tax == 5000
         assert expenses.insurance == 4000
         assert expenses.hoa_annual == 0
-        assert expenses.property_management == 70000 * 0.22
-        assert expenses.utilities == 400 * 12
-        assert expenses.maintenance == 500000 * 0.015
+        assert expenses.property_management == 70000 * 0.18
+        assert expenses.utilities == (150 + 3 * 50) * 12  # base + 3BR * per_bedroom
+        assert expenses.maintenance == 500000 * 0.01
         assert expenses.cleaning > 0
         assert expenses.platform_fees == 70000 * 0.03
         assert expenses.supplies == 100 * 12
         assert expenses.str_permit == 500
         assert expenses.accounting == 1500
         assert expenses.furniture_reserve == 70000 * 0.03
-        assert expenses.landscaping == 150 * 12
+        assert expenses.landscaping == 100 * 12
 
     def test_hoa_included_when_present(self):
         prop = make_property(hoa=300)

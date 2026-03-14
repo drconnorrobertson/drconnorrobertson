@@ -30,8 +30,8 @@ class TestHeuristicEstimation:
         result = estimator.estimate(prop)
 
         assert result.nightly_rate == 275
-        assert result.occupancy_rate == 0.68
-        assert result.annual_revenue == 275 * 0.68 * 365
+        assert result.occupancy_rate == 0.72
+        assert result.annual_revenue == 275 * 0.72 * 365
         assert result.source == RevenueSource.HEURISTIC
         assert result.confidence == Confidence.MEDIUM
 

@@ -99,7 +99,7 @@ def calculate_expenses(
         insurance=exp["insurance_annual"],
         hoa_annual=hoa_annual,
         property_management=revenue.annual_revenue * exp["property_management_pct"],
-        utilities=exp["utilities_monthly"] * 12,
+        utilities=(exp.get("utilities_base_monthly", 150) + prop.bedrooms * exp.get("utilities_per_bedroom", 50)) * 12,
         maintenance=prop.price * exp["maintenance_pct"],
         cleaning=cleaning,
         platform_fees=revenue.annual_revenue * exp["platform_fee_pct"],

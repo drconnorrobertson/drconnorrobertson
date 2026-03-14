@@ -53,8 +53,8 @@ financial_assumptions:
 improvements:
   furnishing_per_bedroom: 4000    # Per bedroom (furniture, linens, decor)
   furnishing_base: 8000           # Common areas (living, kitchen, dining, patio)
-  only_high_impact_amenities: false  # true = only add amenities with "high" revenue impact
-  max_amenity_budget: 60000       # Cap on total amenity additions
+  only_high_impact_amenities: true   # Only add amenities with "high" revenue impact
+  max_amenity_budget: 30000       # Cap on total amenity additions
   # If the listing has known amenities, list them here to skip those costs:
   # existing_amenities:
   #   - "hot tub"
@@ -62,9 +62,10 @@ improvements:
 
 expenses:
   insurance_annual: 4000
-  property_management_pct: 0.22
-  utilities_monthly: 400
-  maintenance_pct: 0.015
+  property_management_pct: 0.18
+  utilities_base_monthly: 150       # Base utilities (internet, trash, base electric)
+  utilities_per_bedroom: 50         # Additional per bedroom (water, HVAC, electric)
+  maintenance_pct: 0.01
   cleaning_per_turnover: 150
   avg_stay_nights: 3.5
   platform_fee_pct: 0.03
@@ -72,7 +73,7 @@ expenses:
   str_permit_annual: 500
   accounting_annual: 1500
   furniture_reserve_pct: 0.03
-  landscaping_monthly: 150
+  landscaping_monthly: 100
 
 thresholds:
   min_cash_on_cash: 0.10
