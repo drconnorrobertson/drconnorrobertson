@@ -1,0 +1,52 @@
+{
+  "property": {
+    "property_name": "Main Street Office Building",
+    "address": "123 Main Street, Suite 100, Springfield, IL 62701",
+    "property_type": "office",
+    "cost_basis": 2500000,
+    "land_value": 400000,
+    "placed_in_service": "2026-01-15",
+    "tax_rate": 0.37
+  },
+  "classification": {
+    "5-year": {
+      "category": "5-year",
+      "description": "5-Year Personal Property",
+      "recovery_period": 5,
+      "percentage": 8.0,
+      "cost": 200000.0
+    },
+    "7-year": {
+      "category": "7-year",
+      "description": "7-Year Personal Property",
+      "recovery_period": 7,
+      "percentage": 6.0,
+      "cost": 150000.0
+    },
+    "15-year": {
+      "category": "15-year",
+      "description": "15-Year Land Improvements",
+      "recovery_period": 15,
+      "percentage": 10.0,
+      "cost": 250000.0
+    },
+    "39-year": {
+      "category": "39-year",
+      "description": "39-Year Nonresidential Real Property",
+      "recovery_period": 39,
+      "percentage": 76.0,
+      "cost": 1900000.0
+    }
+  },
+  "summary": {
+    "total_cost_basis": 2500000,
+    "bonus_rate": 0.2,
+    "tax_rate": 0.37,
+    "accelerated_first_year": 225907.0,
+    "standard_first_year": 61525.0,
+    "additional_deductions": 164382.0,
+    "estimated_tax_savings": 60821.34
+  },
+  "report_file": "reports/CostSeg_Main_Street_Office_Building_2026-01-15.txt",
+  "generated": "April 12, 2026"
+}
