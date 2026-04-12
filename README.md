@@ -4,19 +4,14 @@ Dr Connor Robertson
 
 ### Projects
 
-- [AECostSeg](https://github.com/drconnorrobertson/AECostSeg) - AE Cost Seg
+- [AECostSeg](https://github.com/drconnorrobertson/AECostSeg) - AE Cost Segregation Report Generator
 
-<!--
-**drconnorrobertson/drconnorrobertson** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+### AE Cost Seg Tool
 
-Here are some ideas to get you started:
+Generate cost segregation study reports for any commercial or residential rental property:
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+```bash
+python run_report.py <property.json>
+```
+
+Supports office, retail, restaurant, warehouse, manufacturing, medical, hotel, apartment, and multifamily property types. See `CLAUDE.md` for full usage details.

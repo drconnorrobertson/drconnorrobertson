@@ -1,0 +1,9 @@
+{
+  "property_name": "Main Street Office Building",
+  "address": "123 Main Street, Suite 100, Springfield, IL 62701",
+  "property_type": "office",
+  "cost_basis": 2500000,
+  "land_value": 400000,
+  "placed_in_service": "2026-01-15",
+  "tax_rate": 0.37
+}
