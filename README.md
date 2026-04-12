@@ -2,6 +2,10 @@
 
 Dr Connor Robertson
 
+### Projects
+
+- [AECostSeg](https://github.com/drconnorrobertson/AECostSeg) - AE Cost Seg
+
 <!--
 **drconnorrobertson/drconnorrobertson** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 
