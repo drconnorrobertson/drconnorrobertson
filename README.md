@@ -1,18 +1,13 @@
-## Hi there 👋
+## Hi there
 
-Dr Connor Robertson
+Dr. Connor Robertson -- entrepreneur, author, AI strategist, and podcast host based in Pittsburgh.
 
-<!--
-**drconnorrobertson/drconnorrobertson** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+Founder of [Elixir Consulting Group](https://elixirconsultinggroup.com), [The Pittsburgh Wire](https://thepittsburghwire.com), [The Prospecting Show](https://theprospectingshow.com), and [The Grant Finder](https://thegrantfinder.com).
 
-Here are some ideas to get you started:
+Learn more at [drconnorrobertson.com](https://drconnorrobertson.com)
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+---
+
+### Press & Media
+
+- **[How Dr. Connor Robertson Automated Lead Generation With a Lean, Intent-Triggered Stack](https://artistweekly.com/how-dr-connor-robertson-automated-lead-generation-with-a-lean-intent-triggered-stack/)** -- Artist Weekly, July 2026
