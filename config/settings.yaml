@@ -1,0 +1,82 @@
+api_keys:
+  zillow_rapidapi: "ca56118692msh934ff5ce7b4982fp181ad8jsn3901adb598e3"
+  mashvisor: ""  # Optional: leave empty to use heuristic fallback
+  airdna_rapidapi: "ca56118692msh934ff5ce7b4982fp181ad8jsn3901adb598e3"
+
+markets:
+  - name: "Gatlinburg, TN"
+    location: "Gatlinburg, TN"
+  - name: "Pigeon Forge, TN"
+    location: "Pigeon Forge, TN"
+  - name: "Destin, FL"
+    location: "Destin, FL"
+  - name: "Panama City Beach, FL"
+    location: "Panama City Beach, FL"
+  - name: "Kissimmee, FL"
+    location: "Kissimmee, FL"
+  - name: "Gulf Shores, AL"
+    location: "Gulf Shores, AL"
+  - name: "Scottsdale, AZ"
+    location: "Scottsdale, AZ"
+  - name: "Joshua Tree, CA"
+    location: "Joshua Tree, CA"
+  - name: "Big Bear Lake, CA"
+    location: "Big Bear Lake, CA"
+  - name: "Poconos, PA"
+    location: "Mount Pocono, PA"
+  - name: "Outer Banks, NC"
+    location: "Kill Devil Hills, NC"
+  - name: "Branson, MO"
+    location: "Branson, MO"
+  - name: "Myrtle Beach, SC"
+    location: "Myrtle Beach, SC"
+
+filters:
+  max_price: 900000
+  min_bedrooms: 1
+  property_types:
+    - "SingleFamily"
+    - "Townhouse"
+    - "Condo"
+
+financial_assumptions:
+  down_payment_pct: 0.10
+  loan_term_years: 30
+  interest_rate: 0.07
+  closing_cost_pct: 0.03
+  # Flat fallback values (used only if improvement estimator is bypassed)
+  improvement_budget: 25000
+  furnishing_budget: 15000
+
+# Comp-driven improvement estimation settings
+# Costs are calculated dynamically based on market comps, property age, and size
+improvements:
+  furnishing_per_bedroom: 4000    # Per bedroom (furniture, linens, decor)
+  furnishing_base: 8000           # Common areas (living, kitchen, dining, patio)
+  only_high_impact_amenities: true   # Only add amenities with "high" revenue impact
+  max_amenity_budget: 30000       # Cap on total amenity additions
+  # If the listing has known amenities, list them here to skip those costs:
+  # existing_amenities:
+  #   - "hot tub"
+  #   - "private pool"
+
+expenses:
+  insurance_annual: 4000
+  property_management_pct: 0.18
+  utilities_base_monthly: 150       # Base utilities (internet, trash, base electric)
+  utilities_per_bedroom: 50         # Additional per bedroom (water, HVAC, electric)
+  maintenance_pct: 0.01
+  cleaning_per_turnover: 150
+  avg_stay_nights: 3.5
+  platform_fee_pct: 0.03
+  supplies_monthly: 100
+  str_permit_annual: 500
+  accounting_annual: 1500
+  furniture_reserve_pct: 0.03
+  landscaping_monthly: 100
+
+thresholds:
+  min_cash_on_cash: 0.10
+  min_occupancy: 0.50
+
+scan_interval_hours: 4
