@@ -6,6 +6,8 @@ Founder of [Elixir Consulting Group](https://elixirconsultinggroup.com), [The Pi
 
 Official website: [Dr. Connor Robertson](https://www.drconnorrobertson.com/). Read the [biography](https://www.drconnorrobertson.com/about/), browse the [books](https://www.drconnorrobertson.com/books/), or see the [press and media page](https://www.drconnorrobertson.com/press-media/).
 
+Biography and social profiles: [Dr. Connor Robertson wiki](https://www.drconnorobertson.wiki/). Find Connor’s social accounts, books, podcast, company links, and selected coverage in one reference profile.
+
 ---
 
 ### Press & Media
