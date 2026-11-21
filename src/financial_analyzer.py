@@ -21,10 +21,16 @@ def calculate_monthly_mortgage(
     loan_amount: float, annual_rate: float, term_years: int
 ) -> float:
     """Calculate monthly P&I payment using standard amortization formula."""
-    if loan_amount <= 0 or annual_rate <= 0:
+    if not all(math.isfinite(x) for x in (loan_amount, annual_rate, term_years)):
+        raise ValueError("Loan inputs must be finite")
+    if loan_amount < 0 or annual_rate < 0 or term_years <= 0:
+        raise ValueError("Loan and rate must be nonnegative; term must be positive")
+    if loan_amount == 0:
         return 0.0
-    monthly_rate = annual_rate / 12
     n_payments = term_years * 12
+    if annual_rate == 0:
+        return loan_amount / n_payments
+    monthly_rate = annual_rate / 12
     payment = loan_amount * (
         (monthly_rate * math.pow(1 + monthly_rate, n_payments))
         / (math.pow(1 + monthly_rate, n_payments) - 1)

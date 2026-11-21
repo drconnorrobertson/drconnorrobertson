@@ -3,6 +3,7 @@
 import math
 import sys
 import os
+import pytest
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 
@@ -83,7 +84,15 @@ class TestMonthlyMortgage:
         assert calculate_monthly_mortgage(0, 0.07, 30) == 0.0
 
     def test_zero_rate(self):
-        assert calculate_monthly_mortgage(100000, 0, 30) == 0.0
+        assert math.isclose(calculate_monthly_mortgage(100000, 0, 30), 100000 / 360)
+
+    @pytest.mark.parametrize('loan,rate,years', [
+        (-1, 0.07, 30), (100000, -0.01, 30), (100000, 0.07, 0),
+        (float('nan'), 0.07, 30), (100000, float('inf'), 30),
+    ])
+    def test_invalid_loan_inputs(self, loan, rate, years):
+        with pytest.raises(ValueError):
+            calculate_monthly_mortgage(loan, rate, years)
 
     def test_known_value(self):
         # $200k at 6% for 30yr -> $1,199.10
