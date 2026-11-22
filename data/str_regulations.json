@@ -1,0 +1,93 @@
+{
+  "Gatlinburg, TN": {
+    "status": "ALLOWED",
+    "permit_required": true,
+    "permit_type": "Short-term rental permit",
+    "restrictions": "Must register with city. Annual permit required.",
+    "notes": "STR-friendly market. Cabins are a major tourism driver."
+  },
+  "Pigeon Forge, TN": {
+    "status": "ALLOWED",
+    "permit_required": true,
+    "permit_type": "Short-term rental permit",
+    "restrictions": "Must register with city. Annual permit required.",
+    "notes": "Very STR-friendly. Tourism is the primary economy."
+  },
+  "Destin, FL": {
+    "status": "ALLOWED",
+    "permit_required": true,
+    "permit_type": "State DBPR vacation rental license",
+    "restrictions": "Florida requires state-level DBPR license. Some HOAs restrict STR.",
+    "notes": "Check HOA/condo rules carefully. State license is straightforward."
+  },
+  "Panama City Beach, FL": {
+    "status": "ALLOWED",
+    "permit_required": true,
+    "permit_type": "State DBPR vacation rental license",
+    "restrictions": "Florida requires state-level DBPR license. Some areas restrict STR.",
+    "notes": "Generally STR-friendly. Verify zoning for specific address."
+  },
+  "Kissimmee, FL": {
+    "status": "CONDITIONAL",
+    "permit_required": true,
+    "permit_type": "Osceola County STR registration",
+    "restrictions": "STR allowed in designated resort zones. Restricted in residential areas.",
+    "notes": "Focus on properties in resort-zoned communities near Disney."
+  },
+  "Gulf Shores, AL": {
+    "status": "ALLOWED",
+    "permit_required": true,
+    "permit_type": "City rental permit + state lodging license",
+    "restrictions": "Must obtain city permit and state lodging license. Annual renewal.",
+    "notes": "STR-friendly beach market. Strong vacation rental tradition."
+  },
+  "Scottsdale, AZ": {
+    "status": "CONDITIONAL",
+    "permit_required": true,
+    "permit_type": "Arizona TPT license + city registration",
+    "restrictions": "Arizona SB1168 allows STR statewide but cities can impose regulations. Must pay TPT tax. Nuisance complaints can lead to penalties.",
+    "notes": "Legal statewide but city has added enforcement rules. Register and comply with noise/parking rules."
+  },
+  "Joshua Tree, CA": {
+    "status": "CONDITIONAL",
+    "permit_required": true,
+    "permit_type": "San Bernardino County STR permit",
+    "restrictions": "County caps number of STR permits. Must apply and may be waitlisted. Host must be reachable within 30 mins.",
+    "notes": "Permit availability varies. Check current cap status before purchasing."
+  },
+  "Big Bear Lake, CA": {
+    "status": "CONDITIONAL",
+    "permit_required": true,
+    "permit_type": "City of Big Bear Lake vacation rental permit",
+    "restrictions": "City has a cap on STR permits. Must apply through city. Occupancy limits apply.",
+    "notes": "Limited permits available. Verify permit transferability with purchase."
+  },
+  "Mount Pocono, PA": {
+    "status": "ALLOWED",
+    "permit_required": true,
+    "permit_type": "Township/borough STR registration",
+    "restrictions": "Regulations vary by township. Most Pocono townships allow STR with registration.",
+    "notes": "Generally permissive. Check specific township ordinances."
+  },
+  "Kill Devil Hills, NC": {
+    "status": "ALLOWED",
+    "permit_required": true,
+    "permit_type": "Dare County rental permit",
+    "restrictions": "Must obtain rental permit. Properties must meet safety inspection standards.",
+    "notes": "OBX is a major vacation rental market. Very STR-friendly."
+  },
+  "Branson, MO": {
+    "status": "ALLOWED",
+    "permit_required": true,
+    "permit_type": "City business license",
+    "restrictions": "Must obtain business license for rental activity. Lodging tax applies.",
+    "notes": "Tourism-driven economy. STR is well-established."
+  },
+  "Myrtle Beach, SC": {
+    "status": "CONDITIONAL",
+    "permit_required": true,
+    "permit_type": "City business license + zoning approval",
+    "restrictions": "STR allowed in commercially-zoned and resort areas. Restricted in some residential zones.",
+    "notes": "Verify zoning for specific property. Resort areas are safe bets."
+  }
+}
