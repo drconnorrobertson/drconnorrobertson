@@ -1,8 +1,8 @@
-## Hi there
+# Dr. Connor Robertson
 
 Dr. Connor Robertson -- entrepreneur, author, AI strategist, and podcast host based in Pittsburgh.
 
-Founder of [Elixir Consulting Group](https://elixirconsultinggroup.com), [The Pittsburgh Wire](https://thepittsburghwire.com), [The Prospecting Show](https://www.prospectingshow.com), and [The Grant Finder](https://thegrantfinder.com).
+Founder of [Elixir Consulting Group](https://www.elixirconsultinggroup.com/), [The Pittsburgh Wire](https://www.thepittsburghwire.com/), [The Prospecting Show](https://www.prospectingshow.com), and [The Grant Finder](https://www.thegrantfinder.org/).
 
 Official website: [Dr. Connor Robertson](https://www.drconnorrobertson.com/). Read the [biography](https://www.drconnorrobertson.com/about/), browse the [books](https://www.drconnorrobertson.com/books/), or see the [press and media page](https://www.drconnorrobertson.com/press-media/).
 
